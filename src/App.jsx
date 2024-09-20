@@ -48,24 +48,36 @@ function App() {
   }
 
 
-  // Tailwind-CSS
+  // CSS-Class
 
   return (
     <>
-      <h1>Quiz App</h1>
-      {question.length > 0 ? <div>
+    <div className="mx-5 p-5">
+       <h1 className="text-center m-3">Quiz App</h1>
+
+      <div className="">
+      {question.length > 0 ? <div className=" p-5 m-5 bg-gray-100 items-center justify-center ">
+        <div>
         <h1>Q{questionState + 1}: {question[questionState].question.text}</h1>
-        <ul>
+        </div>
+        <div className="mt-4  ">
           {shuffleArray([...question[questionState].incorrectAnswers , question[questionState].correctAnswer]).map((item , index)=>{
-            return <li key={index}>
+            return <li key={index} className="mt-3 ">
             <input type="radio" name='choice' id={item} value={item} ref={el => (checkedInput.current[index] = el)}/>
             <label htmlFor={item}>{item}</label>
           </li>
           })
           }
-        </ul>
-        <button onClick={()=> nextQuestion()}>Next {question.length}</button>
+        </div>
+        <div>
+        <button onClick={()=> nextQuestion()} className="btn btn-outline-primary m-5">Next {question.length}</button>
+        </div>
+       
       </div> : <h1>Loading...</h1>}
+      </div>
+
+    </div>
+     
     </>
   )
 }
